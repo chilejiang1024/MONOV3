@@ -1,5 +1,5 @@
 # MONOV3
-MONO for iOS. version 3.
+MONO for iOS. Version 3.
 
 ***
 
