@@ -29,7 +29,6 @@
 @interface FindView () <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIImageView *LunBoTuImageView;
 @property (nonatomic, strong) UICollectionReusableView *headViewBig;
 @property (nonatomic, strong) UICollectionReusableView *headViewSmallOne;
@@ -62,15 +61,33 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-
         [self createView];
-        [self updateData];
     }
     return self;
 }
 
 - (void)createView {
+    [self createTopView];
     [self createCollectionView];
+}
+
+#pragma mark - create top view
+
+- (void)createTopView {
+    UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, 20, WIDTH, 50)];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(WIDTH / 2 - 50, 0, 100, 50)];
+    label.text = @"发现";
+    label.font = [UIFont systemFontOfSize:20.f];
+    label.textColor = [UIColor blackColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    [topView addSubview:label];
+    
+    UIButton *findButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    findButton.frame = CGRectMake(0, 0, 50, 50);
+    [topView addSubview:findButton];
+    
+    [self addSubview:topView];
 }
 
 #pragma mark - create CollectionView
@@ -84,7 +101,7 @@
     layout.minimumLineSpacing = 0;
     // layout纵向滑动
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 20 * H, WIDTH, HEIGHT - 69 * H) collectionViewLayout:layout];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 70, WIDTH, HEIGHT - 69 * H) collectionViewLayout:layout];
     
     // 使用注册的方法 写重用池
     [self.collectionView registerClass:[FindCollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
@@ -98,17 +115,28 @@
     
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
+    
+    // 下拉刷新
+    self.collectionView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"updateData" object:nil];
+    }];
+    
+    // 上拉加载
+    self.collectionView.mj_footer = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"loadData" object:nil];
+    }];
+    
     [self addSubview:self.collectionView];
     
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    int i = 0;
+    static int i = 0;
     if (i < 3) {
         i++;
         return 3;
     } else {
-    return self.arrAllHeader.count;
+        return self.arrAllHeader.count;
     }
 }
 
@@ -125,7 +153,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    id model = self.arrAll[indexPath.section][indexPath.row];
+    id model = self.arrAll[indexPath.section % 2][indexPath.row];
 
     if ([model isKindOfClass:[Collection class]]) {
         FindSpecialCollectionViewCell *specialCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"specialCell" forIndexPath:indexPath];
@@ -143,8 +171,10 @@
     if (indexPath.section == 0) {
         self.headViewBig = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"headerBig" forIndexPath:indexPath];
         self.headViewBig.backgroundColor = [UIColor whiteColor];
-        [self createScrollView];
-        [self createButton];
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            [self createButton];
+        });
         return self.headViewBig;
     } else if (indexPath.section % 2 == 1) {
         self.headViewSmallOne = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"headerSmallOne" forIndexPath:indexPath];
@@ -167,21 +197,6 @@
     } else {
         return CGSizeMake(WIDTH, 200 * H);
     }
-}
-
-#pragma mark - 头视图中的轮播图创建
-
-- (void)createScrollView {
-    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 200 * H)];
-//    self.scrollView.backgroundColor = [UIColor greenColor];
-    self.scrollView.contentSize = CGSizeMake(WIDTH * 3 * W, 200 * H);
-    // 设置按页滚动
-    self.scrollView.pagingEnabled = YES;
-    // 取消边界反弹
-    self.scrollView.bounces = NO;
-    // 取消滑动条的显示
-        self.scrollView.showsHorizontalScrollIndicator = NO;
-    [self.headViewBig addSubview:self.scrollView];
 }
 
 #pragma mark - 头视图中的按钮
@@ -369,8 +384,11 @@
 
 - (void)setLunBoTuArray:(NSMutableArray *)arr {
     // 轮播图赋值
-    WheelView *wheel = [[WheelView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 200 * H) DataArray:arr];
-    [self.scrollView addSubview:wheel];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        WheelView *wheel = [[WheelView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 200 * H) DataArray:arr];
+        [self.collectionView addSubview:wheel];
+    });
     
 }
 - (void)getItemArr:(NSMutableArray *)arrAll {
@@ -383,19 +401,5 @@
 
     self.arrAllHeader = arr;
     [self.collectionView reloadData];
-    [self.collectionView endEditing:YES];
-}
-
-// 下拉刷新和上拉加载数据
-- (void)updateData {
-    // 下拉刷新
-    self.collectionView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"updateData" object:nil];
-    }];
-    
-    // 上拉加载
-    self.collectionView.mj_footer = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"loadData" object:nil];
-    }];
 }
 @end

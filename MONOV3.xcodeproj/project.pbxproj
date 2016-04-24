@@ -41,6 +41,8 @@
 		0717F4761CA62023006EB13B /* procotol.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0717F4751CA62023006EB13B /* procotol.txt */; };
 		072C964C1CB34B80001462D7 /* BaseWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 072C964B1CB34B80001462D7 /* BaseWebView.m */; };
 		07420BD71C9FEE0200641212 /* Image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07420BD61C9FEE0200641212 /* Image.xcassets */; };
+		0743F0A21CC0E8C600E446A4 /* MeowCellTypeZero.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0743F0A11CC0E8C600E446A4 /* MeowCellTypeZero.xib */; };
+		0743F0D51CCB8E7600E446A4 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0743F0D41CCB8E7600E446A4 /* MBProgressHUD.m */; };
 		077C6B301C9ACE9600358523 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 077C6B2F1C9ACE9600358523 /* main.m */; };
 		077C6B391C9ACE9600358523 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 077C6B371C9ACE9600358523 /* Main.storyboard */; };
 		077C6B3B1C9ACE9600358523 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 077C6B3A1C9ACE9600358523 /* Assets.xcassets */; };
@@ -161,6 +163,8 @@
 		18990E291CB4F5790077DC25 /* BlackButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18990E281CB4F5790077DC25 /* BlackButtonView.m */; };
 		18990E2C1CB4F5C00077DC25 /* BlackButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18990E2B1CB4F5C00077DC25 /* BlackButtonViewController.m */; };
 		18990E2E1CB511A60077DC25 /* leftButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 18990E2D1CB511A60077DC25 /* leftButton.png */; };
+		18A715DD1CB68BAD00B5020D /* YellowButtonSubViewControlerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A715DC1CB68BAD00B5020D /* YellowButtonSubViewControlerViewController.m */; };
+		18B4DC011CB68D5D00502FCD /* YellowButtonSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B4DC001CB68D5D00502FCD /* YellowButtonSubView.m */; };
 		18EA6A6E1CA3CBA600D8285A /* Top_banner.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EA6A6D1CA3CBA600D8285A /* Top_banner.m */; };
 		18EA6A711CA3CD9F00D8285A /* Meow.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EA6A701CA3CD9F00D8285A /* Meow.m */; };
 		18EA6A741CA3CDA700D8285A /* Collection.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EA6A731CA3CDA700D8285A /* Collection.m */; };
@@ -255,6 +259,9 @@
 		072C964A1CB34B80001462D7 /* BaseWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseWebView.h; sourceTree = "<group>"; };
 		072C964B1CB34B80001462D7 /* BaseWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseWebView.m; sourceTree = "<group>"; };
 		07420BD61C9FEE0200641212 /* Image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Image.xcassets; sourceTree = "<group>"; };
+		0743F0A11CC0E8C600E446A4 /* MeowCellTypeZero.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeowCellTypeZero.xib; sourceTree = "<group>"; };
+		0743F0D31CCB8E7600E446A4 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		0743F0D41CCB8E7600E446A4 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		077C6B2B1C9ACE9600358523 /* MONOV3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MONOV3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		077C6B2F1C9ACE9600358523 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		077C6B381C9ACE9600358523 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -479,6 +486,10 @@
 		18990E2A1CB4F5C00077DC25 /* BlackButtonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlackButtonViewController.h; sourceTree = "<group>"; };
 		18990E2B1CB4F5C00077DC25 /* BlackButtonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlackButtonViewController.m; sourceTree = "<group>"; };
 		18990E2D1CB511A60077DC25 /* leftButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leftButton.png; sourceTree = "<group>"; };
+		18A715DB1CB68BAD00B5020D /* YellowButtonSubViewControlerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YellowButtonSubViewControlerViewController.h; sourceTree = "<group>"; };
+		18A715DC1CB68BAD00B5020D /* YellowButtonSubViewControlerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YellowButtonSubViewControlerViewController.m; sourceTree = "<group>"; };
+		18B4DBFF1CB68D5D00502FCD /* YellowButtonSubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YellowButtonSubView.h; sourceTree = "<group>"; };
+		18B4DC001CB68D5D00502FCD /* YellowButtonSubView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YellowButtonSubView.m; sourceTree = "<group>"; };
 		18EA6A6C1CA3CBA600D8285A /* Top_banner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Top_banner.h; sourceTree = "<group>"; };
 		18EA6A6D1CA3CBA600D8285A /* Top_banner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Top_banner.m; sourceTree = "<group>"; };
 		18EA6A6F1CA3CD9F00D8285A /* Meow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Meow.h; sourceTree = "<group>"; };
@@ -551,6 +562,15 @@
 				072C964B1CB34B80001462D7 /* BaseWebView.m */,
 			);
 			path = BaseWebView;
+			sourceTree = "<group>";
+		};
+		0743F0D21CCB8E7600E446A4 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				0743F0D31CCB8E7600E446A4 /* MBProgressHUD.h */,
+				0743F0D41CCB8E7600E446A4 /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
 		077C6B221C9ACE9600358523 = {
@@ -1228,6 +1248,7 @@
 			isa = PBXGroup;
 			children = (
 				0782BDED1CA0D2F000B24C7B /* libsqlite3.0.tbd */,
+				0743F0D21CCB8E7600E446A4 /* MBProgressHUD */,
 				0782BD531CA0CF7B00B24C7B /* AFNetworking */,
 				0782BD611CA0CF7B00B24C7B /* fmdb */,
 				0782BD6D1CA0CF7B00B24C7B /* MJRefresh */,
@@ -1243,6 +1264,7 @@
 				07BA03FA1CA919F20058C59B /* MeowCellFactory.m */,
 				07BA03FF1CA91FDC0058C59B /* MeowCellTypeZero.h */,
 				07BA04001CA91FDC0058C59B /* MeowCellTypeZero.m */,
+				0743F0A11CC0E8C600E446A4 /* MeowCellTypeZero.xib */,
 				07BA03FC1CA91C450058C59B /* MeowCellTypeOne.h */,
 				07BA03FD1CA91C450058C59B /* MeowCellTypeOne.m */,
 				07BA04171CA92CFB0058C59B /* MeowCellTypeOne.xib */,
@@ -1351,6 +1373,8 @@
 				0717F3CD1CA2C3B5006EB13B /* FindView.m */,
 				18ECAE7F1CACC19F00CEEC18 /* YellowButtonView.h */,
 				18ECAE801CACC19F00CEEC18 /* YellowButtonView.m */,
+				18B4DBFF1CB68D5D00502FCD /* YellowButtonSubView.h */,
+				18B4DC001CB68D5D00502FCD /* YellowButtonSubView.m */,
 				18990E271CB4F5790077DC25 /* BlackButtonView.h */,
 				18990E281CB4F5790077DC25 /* BlackButtonView.m */,
 				07E0662B1CA2724B008A8494 /* Cell */,
@@ -1386,6 +1410,8 @@
 				18ECAE7D1CACBD2100CEEC18 /* YellowButtonViewController.m */,
 				18990E2A1CB4F5C00077DC25 /* BlackButtonViewController.h */,
 				18990E2B1CB4F5C00077DC25 /* BlackButtonViewController.m */,
+				18A715DB1CB68BAD00B5020D /* YellowButtonSubViewControlerViewController.h */,
+				18A715DC1CB68BAD00B5020D /* YellowButtonSubViewControlerViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1621,6 +1647,7 @@
 				07420BD71C9FEE0200641212 /* Image.xcassets in Resources */,
 				18990E2E1CB511A60077DC25 /* leftButton.png in Resources */,
 				07BA04511CAA65FD0058C59B /* MeowCellTypeNine.xib in Resources */,
+				0743F0A21CC0E8C600E446A4 /* MeowCellTypeZero.xib in Resources */,
 				0717F4741CA58C1F006EB13B /* weixin.png in Resources */,
 				0782BDF61CA0DD7700B24C7B /* iconfont-m-selected.png in Resources */,
 				07BA04201CAA05B30058C59B /* MeowCellTypeFive.xib in Resources */,
@@ -1675,6 +1702,7 @@
 				0717F46A1CA58285006EB13B /* Master_info.m in Sources */,
 				0782BDC81CA0CF7B00B24C7B /* MJRefreshBackFooter.m in Sources */,
 				0717F4691CA58285006EB13B /* Coordinate.m in Sources */,
+				0743F0D51CCB8E7600E446A4 /* MBProgressHUD.m in Sources */,
 				07E066391CA29056008A8494 /* MineViewController.m in Sources */,
 				0717F3DD1CA2C42F006EB13B /* ReminderViewController.m in Sources */,
 				07BA044A1CAA65BF0058C59B /* MeowCellTypeEight.m in Sources */,
@@ -1733,6 +1761,7 @@
 				0717F3E01CA2C43C006EB13B /* ReminderModel.m in Sources */,
 				0782BDC71CA0CF7B00B24C7B /* MJRefreshAutoFooter.m in Sources */,
 				18EA6A7D1CA3CEFC00D8285A /* Entity_listSecond.m in Sources */,
+				18A715DD1CB68BAD00B5020D /* YellowButtonSubViewControlerViewController.m in Sources */,
 				0782BDBC1CA0CF7B00B24C7B /* AFHTTPSessionManager.m in Sources */,
 				0717F4501CA58227006EB13B /* TeaView.m in Sources */,
 				18EA6A6E1CA3CBA600D8285A /* Top_banner.m in Sources */,
@@ -1797,6 +1826,7 @@
 				0717F4681CA58285006EB13B /* Mod_list.m in Sources */,
 				0782BDDD1CA0CF7B00B24C7B /* SDWebImageCompat.m in Sources */,
 				07BA04161CA92B130058C59B /* MeowCellTypeSeven.m in Sources */,
+				18B4DC011CB68D5D00502FCD /* YellowButtonSubView.m in Sources */,
 				0717F3D11CA2C3F3006EB13B /* FindCollectionViewCell.m in Sources */,
 				0782BDDC1CA0CF7B00B24C7B /* SDImageCache.m in Sources */,
 				18990E2C1CB4F5C00077DC25 /* BlackButtonViewController.m in Sources */,
@@ -1946,7 +1976,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chile.MONOV3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7adaf093-9418-45c5-b9d3-1b40ab7b2b2c";
+				PROVISIONING_PROFILE = "886e412d-b865-42b7-bb2f-103bb2d27ad8";
 			};
 			name = Debug;
 		};
@@ -1961,7 +1991,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chile.MONOV3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7adaf093-9418-45c5-b9d3-1b40ab7b2b2c";
+				PROVISIONING_PROFILE = "886e412d-b865-42b7-bb2f-103bb2d27ad8";
 			};
 			name = Release;
 		};

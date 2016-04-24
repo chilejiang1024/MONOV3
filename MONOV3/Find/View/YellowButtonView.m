@@ -12,13 +12,18 @@
 #import "YellowBtnTableViewCellFirst.h"
 #import "YellowBtnTableViewCellSecond.h"
 
-@interface YellowButtonView ()<UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate>
+#import "YellowButtonSubViewControlerViewController.h"
+#import "FindViewCatalogueModel.h"
+
+@interface YellowButtonView () <UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, retain) UITableView *table;
 @property (nonatomic, retain) UIScrollView *titleScroll;
 @property (nonatomic, retain) UIScrollView *contentScroll;
 @property (nonatomic, assign) NSInteger arrCount;
 @property (nonatomic, retain) NSMutableArray *arrayContent;
+
+@property (nonatomic, retain) NSMutableArray *arrayTitle;
 
 @end
 
@@ -43,6 +48,7 @@
 }
 
 - (void)createTitleScrollView:(NSMutableArray *)array{
+    _arrayTitle = array;
     _arrCount = array.count;
     _titleScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 60, self.frame.size.width, 30)];
     _titleScroll.showsHorizontalScrollIndicator = NO;
@@ -115,6 +121,12 @@
     }
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self.delegate clickCell:indexPath.row Type:@"table"];
+}
+
+
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if ([self.arrayContent[indexPath.row] pics].count < 1) {
         return [UIScreen mainScreen].bounds.size.height / 2.5;
@@ -127,6 +139,13 @@
     if (scrollView == _contentScroll) {
         static CGFloat indexBefore = 0;
         CGFloat index = self.contentScroll.contentOffset.x / self.frame.size.width;
+        
+        FindViewCatalogueModel *model = self.arrayTitle[(int)index];
+        YellowButtonSubViewControlerViewController *viewController = [[YellowButtonSubViewControlerViewController alloc] initWithDataNumber:[NSString stringWithFormat:@"%@", model.Id]];
+        viewController.view.frame = CGRectMake(index * self.frame.size.width, 0, self.frame.size.width, self.frame.size.height - 180);
+        [_contentScroll addSubview:viewController.view];
+        
+        
         UIButton *buttonBefore = [self viewWithTag:1100 + indexBefore];
         [buttonBefore setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         indexBefore = index;

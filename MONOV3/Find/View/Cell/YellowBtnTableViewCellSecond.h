@@ -8,6 +8,7 @@
 
 #import "BaseTableViewCell.h"
 #import "MeowsModel.h"
+
 @interface YellowBtnTableViewCellSecond : BaseTableViewCell
 @property (nonatomic, retain) MeowsModel *meow;
 @end

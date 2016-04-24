@@ -78,7 +78,7 @@
         [self.exploreModelArr addObjectsFromArray:[ExPloreModelArr getExPloreModelArray:responseObject[@"tea"]]];
         [self.exploreView setExploreModelArr:self.exploreModelArr];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
+        NSLog(@"%@", error);
     }];
 }
 
@@ -91,7 +91,6 @@
     __block typeof(self) weakSelf = self;
     self.exploreView.tableView.tableViewRefreshBlock = ^(){
         weakSelf.start = 1;
-        // [weakSelf.exploreModelArr removeAllObjects];
         [weakSelf createData];
     };
     self.exploreView.tableView.tableViewLoadMoreBlock = ^(){

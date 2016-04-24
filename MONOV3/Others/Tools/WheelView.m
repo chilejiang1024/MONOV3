@@ -8,7 +8,9 @@
 
 #import "WheelView.h"
 #import "UIImageView+WebCache.h"
+
 @interface WheelView ()<UIScrollViewDelegate>
+
 @property (nonatomic, retain) UIImageView *imgBefor;
 @property (nonatomic, retain) UIImageView *imgMid;
 @property (nonatomic, retain) UIImageView *imgNext;
@@ -18,7 +20,9 @@
 @property (nonatomic, assign) NSInteger picCount;
 @property (nonatomic, retain) NSMutableArray *arrayPic;
 @end
+
 @implementation WheelView
+
 - (instancetype)initWithFrame:(CGRect)frame DataArray:(NSMutableArray *)dataArray{
     self = [super initWithFrame:frame];
     if (self) {

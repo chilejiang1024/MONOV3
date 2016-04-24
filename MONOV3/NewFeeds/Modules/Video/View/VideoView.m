@@ -85,7 +85,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%@", [self.videoModelArr[indexPath.row] ID]);
+    NSString *url = [NSString stringWithFormat:URL_MEOW_WEBVIEW, [self.videoModelArr[indexPath.row] ID]];
+    self.tableView.goToWebViewBlock(url);
 }
 
 @end

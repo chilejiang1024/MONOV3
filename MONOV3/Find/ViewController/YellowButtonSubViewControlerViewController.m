@@ -1,69 +1,58 @@
 //
-//  YellowButtonViewController.m
+//  YellowButtonSubViewControlerViewController.m
 //  MONOV3
 //
-//  Created by apple on 16/3/31.
+//  Created by apple on 16/4/7.
 //  Copyright © 2016年 JiangChile. All rights reserved.
 //
 
-#import "YellowButtonViewController.h"
-#import "YellowButtonView.h"
-#import "FindViewCatalogueModel.h"
+#import "YellowButtonSubViewControlerViewController.h"
 #import "AFNetworking.h"
 #import "TagsModel.h"
 #import "MeowsModel.h"
-
-#import "MONOTools.h"
-
-@interface YellowButtonViewController () <YellowButtonViewDelegate>
-
+#import "YellowButtonSubView.h"
+@interface YellowButtonSubViewControlerViewController ()
+@property (nonatomic, copy) NSString *dataNumber;
 @end
 
-@implementation YellowButtonViewController
+@implementation YellowButtonSubViewControlerViewController
+
+- (instancetype)initWithDataNumber:(NSString *)dataNumber{
+    self = [super init];
+    if (self) {
+        self.dataNumber = dataNumber;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self createFirstTimeData];
-    [self createYellowBtnView];
+    
+    [self createData];
+    [self createSubView];
 }
 
-- (void)createFirstTimeData{
+- (void)createSubView{
+    YellowButtonSubView *view = [[YellowButtonSubView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    [self.view addSubview:view];
+}
+
+- (void)createData{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager.requestSerializer setValue:@"mmmono.com" forHTTPHeaderField:@"Host"];
     [manager.requestSerializer setValue:@"c3a2c55eebe811e597b1525400097b5b" forHTTPHeaderField:@"HTTP-AUTHORIZATION"];
-    [manager GET:@"http://mmmono.com/api/v3/domain_category/100011/?" parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+    NSString *path = [NSString stringWithFormat:@"http://mmmono.com/api/v3/domain_category/%@/?", self.dataNumber];
+    [manager GET:path parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         NSMutableArray *arrayTags = [TagsModel getTagsModelArray:responseObject];
         NSMutableArray *arrayMeows = [MeowsModel getMeowsModelArray:responseObject];
         NSDictionary *dicArr = @{@"arrayTags":arrayTags, @"arrayMeows":arrayMeows};
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"firstLoadData" object:@"yes" userInfo:dicArr];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"getDataForSubView" object:@"yes" userInfo:dicArr];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"error");
-    }];
-}
-
-- (void)createYellowBtnView{
-    
-    YellowButtonView *yellowButtonView = [[YellowButtonView alloc] initWithFrame:self.view.bounds];
-    [self.view addSubview:yellowButtonView];
-    
-    [FindViewCatalogueModel getFindViewCatalogueModel:^(NSMutableArray *array) {
-        [yellowButtonView createTitleScrollView:array];
-    }];
-    yellowButtonView.delegate = self;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clickBack) name:@"back" object:nil];
-}
-
-- (void)clickCell:(NSInteger)index Type:(NSString *)type{
-    NSLog(@"%ld", index);
-}
-
-- (void)clickBack{
-    [self dismissViewControllerAnimated:YES completion:^{
-        
     }];
 }
 

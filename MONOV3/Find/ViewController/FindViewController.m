@@ -16,6 +16,7 @@
 #import "BlackButtonViewController.h"
 #import "LoadMoreFindModel.h"
 #import "Campaign.h"
+
 @interface FindViewController ()<FindViewDelegate>
 
 @property (nonatomic, strong) FindView *findView;
@@ -51,7 +52,6 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-//        NSLog(@"%@", responseObject);
         FindModel *model = [FindModel findModelWithDic:responseObject];
         self.start = model.start;
         

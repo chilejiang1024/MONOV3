@@ -44,7 +44,7 @@
     self.labelUserName.text    = self.model.user.name;
     NSDate *date               = [NSDate dateWithTimeIntervalSince1970:self.model.create_time];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy.MM.dd HH:mm"];
+    [formatter setDateFormat:@"HH:mm"];
     NSString *dateStr          = [formatter stringFromDate:date];
     self.labelCreateTime.text  = dateStr;
     [self.imageViewThumb sd_setImageWithURL:[NSURL URLWithString:[self.model.images.firstObject raw]] placeholderImage:[UIImage imageNamed:@"mask-gallery"]];

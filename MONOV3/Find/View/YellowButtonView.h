@@ -8,6 +8,12 @@
 
 #import "BaseView.h"
 
+@protocol YellowButtonViewDelegate <NSObject>
+@optional
+- (void)clickCell:(NSInteger)index Type:(NSString *)type;
+@end
+
 @interface YellowButtonView : BaseView
+@property (nonatomic, assign) id<YellowButtonViewDelegate> delegate;
 - (void)createTitleScrollView:(NSMutableArray *)array;
 @end

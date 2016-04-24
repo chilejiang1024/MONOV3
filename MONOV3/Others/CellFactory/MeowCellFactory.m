@@ -26,7 +26,6 @@
 @interface MeowCellFactory ()
 
 @property (nonatomic, strong) NSArray *arrayCells;
-
 @property (nonatomic, strong) NSArray *arrayNibName;
 
 @end
@@ -57,11 +56,12 @@
 }
 
 - (BaseTableViewCell *)createCellWithModel:(Meow *)model {
-    // BaseTableViewCell *cell = [[self.arrayCells[model.meow_type.integerValue] alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:model.meow_type];
-    NSString *nibName = self.arrayNibName[model.meow_type.integerValue];
-    BaseTableViewCell *cell = [[NSBundle mainBundle] loadNibNamed:nibName owner:nil options:nil].lastObject;
-    cell.model = model;
-    return cell;
+    @autoreleasepool {
+        NSString *nibName = self.arrayNibName[model.meow_type.integerValue];
+        BaseTableViewCell *cell = [[NSBundle mainBundle] loadNibNamed:nibName owner:nil options:nil].lastObject;
+        cell.model = model;
+        return cell;
+    }
 }
 
 

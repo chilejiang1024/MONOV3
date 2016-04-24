@@ -54,6 +54,8 @@
 }
 
 - (void)layoutSubviews {
+    [super layoutSubviews];
+    
 //    self.labelDate.frame = CGRectMake(0, 20, CGRectGetWidth(self.frame), 20);
 //    self.labelDay.frame = CGRectMake(WIDTH / 4 - 50, 20, 100, 100);
 //    self.labelTeaKind.frame = CGRectMake(WIDTH / 4 - 50, 140, 100, 30);

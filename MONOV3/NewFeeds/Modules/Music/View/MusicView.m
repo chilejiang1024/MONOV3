@@ -86,7 +86,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%@", [self.musicModelArr[indexPath.row] ID]);
+    NSString *url = [NSString stringWithFormat:URL_MEOW_WEBVIEW, [self.musicModelArr[indexPath.row] ID]];
+    self.tableView.goToWebViewBlock(url);
 }
 
 

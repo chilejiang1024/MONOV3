@@ -7,11 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+
 @protocol WheelViewDelegate <NSObject>
+
 @optional
+
 - (void)clickWheelView:(NSInteger)picNumber;
+
 @end
+
 @interface WheelView : UIScrollView
+
 @property (nonatomic, assign) id<WheelViewDelegate> delegateA;
+
 - (instancetype)initWithFrame:(CGRect)frame DataArray:(NSMutableArray *)dataArray;
+
 @end

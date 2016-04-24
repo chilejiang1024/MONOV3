@@ -14,19 +14,18 @@
 @interface NewFeedsView () <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic, strong) UICollectionView *collectionViewButtons;
-
 @property (nonatomic, strong) UICollectionView *collectionViewVCs;
 
 @end
 
 static NSString *collectionVeiwButtonsReuseID = @"collectionVeiwButtonsReuseID";
 
-static NSString *collectionVeiwVCsReuseID0    = @"collectionVeiwVCsReuseID0";
-static NSString *collectionVeiwVCsReuseID1    = @"collectionVeiwVCsReuseID1";
-static NSString *collectionVeiwVCsReuseID2    = @"collectionVeiwVCsReuseID2";
-static NSString *collectionVeiwVCsReuseID3    = @"collectionVeiwVCsReuseID3";
-static NSString *collectionVeiwVCsReuseID4    = @"collectionVeiwVCsReuseID4";
-static NSString *collectionVeiwVCsReuseID5    = @"collectionVeiwVCsReuseID5";
+static NSString *const collectionVeiwVCsReuseID0    = @"collectionVeiwVCsReuseID0";
+static NSString *const collectionVeiwVCsReuseID1    = @"collectionVeiwVCsReuseID1";
+static NSString *const collectionVeiwVCsReuseID2    = @"collectionVeiwVCsReuseID2";
+static NSString *const collectionVeiwVCsReuseID3    = @"collectionVeiwVCsReuseID3";
+static NSString *const collectionVeiwVCsReuseID4    = @"collectionVeiwVCsReuseID4";
+static NSString *const collectionVeiwVCsReuseID5    = @"collectionVeiwVCsReuseID5";
 
 @implementation NewFeedsView
 
@@ -85,6 +84,8 @@ static NSString *collectionVeiwVCsReuseID5    = @"collectionVeiwVCsReuseID5";
     
 }
 
+#pragma mark - collection view (delegate)
+
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
 }
@@ -97,6 +98,10 @@ static NSString *collectionVeiwVCsReuseID5    = @"collectionVeiwVCsReuseID5";
     if ([collectionView isEqual:self.collectionViewButtons]) {
         NewFeedsButtonCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:collectionVeiwButtonsReuseID forIndexPath:indexPath];
         cell.moduleName = NEWFEEDSARRAY[indexPath.row];
+        // 设置初始选中的item
+        if (indexPath.row == 0) {
+            cell.isShow = YES;
+        }
         return cell;
     } else {
         NewFeedsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[NSString stringWithFormat:@"collectionVeiwVCsReuseID%ld", indexPath.row] forIndexPath:indexPath];
@@ -106,7 +111,27 @@ static NSString *collectionVeiwVCsReuseID5    = @"collectionVeiwVCsReuseID5";
     }
 }
 
-#pragma mark - scroll view delegate
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    if ([collectionView isEqual:self.collectionViewButtons]) {
+        if (indexPath.row > 1) {
+            NewFeedsButtonCollectionViewCell *cell = (NewFeedsButtonCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+            cell.isShow = YES;
+            self.collectionViewButtons.contentOffset = CGPointMake(130 * indexPath.row, 0);
+            self.collectionViewVCs.contentOffset = CGPointMake(WIDTH * indexPath.row, 0);
+        }
+    } else {
+        
+    }
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
+    if ([collectionView isEqual:self.collectionViewButtons]) {
+        NewFeedsButtonCollectionViewCell *cell = (NewFeedsButtonCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+        cell.isShow = NO;
+    }
+}
+
+#pragma mark - scroll view (delegate)
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if ([scrollView isEqual:self.collectionViewButtons]) {
@@ -134,10 +159,11 @@ static NSString *collectionVeiwVCsReuseID5    = @"collectionVeiwVCsReuseID5";
         NewFeedsButtonCollectionViewCell *cell = (NewFeedsButtonCollectionViewCell *)[self.collectionViewButtons cellForItemAtIndexPath:indexPath];
         cell.isShow = NO;
     }
+    
     // 将显示的VC对应的cell label text color 置为 MONO_COLOR
-    showPage = showPage == 0 ? 0 : 1;
-    NewFeedsButtonCollectionViewCell *cell = (NewFeedsButtonCollectionViewCell *)[self.collectionViewButtons cellForItemAtIndexPath:arrayIndexPath[showPage]];
-    cell.isShow = YES;
+    NSIndexPath *buttonIndexPath = [NSIndexPath indexPathForRow:showPage inSection:0];
+    NewFeedsButtonCollectionViewCell *buttonCell = (NewFeedsButtonCollectionViewCell *)[self.collectionViewButtons cellForItemAtIndexPath:buttonIndexPath];
+    buttonCell.isShow = YES;
 }
 
 
