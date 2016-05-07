@@ -47,11 +47,9 @@
 
 - (void)setTeaDetailModel:(TeaDetailModel *)teaDetailModel {
     _teaDetailModel = teaDetailModel;
+    self.labelTitle.text = _teaDetailModel.title;
     self.arrayMeowModel = _teaDetailModel.entity_list;
     [self.tableView reloadData];
-    
-    
-    
 }
 
 - (void)createView {
@@ -64,7 +62,7 @@
 
 - (void)createControlView {
     self.controlView = [UIView.alloc initWithFrame:CGRectMake(0, 0, WIDTH, 70)];
-    self.controlView.alpha = 0.5;
+    self.controlView.alpha = 0;
     self.controlView.backgroundColor = [UIColor blackColor];
     [self addSubview:self.controlView];
     
@@ -72,12 +70,12 @@
     self.buttonBack.frame = CGRectMake(20, 30, 20, 40);
     [self.buttonBack setImage:[UIImage imageNamed:@"icon-arrow-left-white"] forState:UIControlStateNormal];
     [self.buttonBack addTarget:self action:@selector(dismissThisView:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:self.buttonBack];
+    [self.controlView addSubview:self.buttonBack];
     
-    self.labelTitle = [UILabel.alloc initWithFrame:CGRectMake(WIDTH - 50, 30, WIDTH - 100, 30)];
+    self.labelTitle = [UILabel.alloc initWithFrame:CGRectMake(50, 30, WIDTH - 100, 30)];
     self.labelTitle.textColor = [UIColor whiteColor];
     self.labelTitle.textAlignment = NSTextAlignmentCenter;
-    [self addSubview:self.labelTitle];
+    [self.controlView addSubview:self.labelTitle];
     
 }
 
@@ -147,8 +145,12 @@
 
 #pragma mark - scroll view delegate
 
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGFloat y = scrollView.contentOffset.y;
+    if (y > HEIGHT) {
+        return;
+    }
+    self.controlView.alpha = (y / HEIGHT) * 0.8;
 }
 
 #pragma mark - button selector 

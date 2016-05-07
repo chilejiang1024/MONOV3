@@ -19,4 +19,6 @@
 /** 设置并创建cell下方按钮view, 0 black, 1 white */
 - (void)setControlPanelViewStyle:(NSInteger)controlPanelViewStyle ThumbNum:(NSInteger)thumbNum CommentNum:(NSInteger)commentNum;
 
+
+
 @end
